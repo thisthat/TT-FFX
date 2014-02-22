@@ -1,0 +1,75 @@
+﻿<Window x:Class="CameraKinect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="TT FFX" Height="565" Width="669.864" Closing="Window_Closing" LocationChanged="Window_LocationChanged" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e"/>
+        <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f"/>
+        <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2"/>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="SnapshotButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="9,0,0,0">
+                                    <Image x:Name="SnapNormal" Source="Images\SnapNormal.png" Stretch="None" HorizontalAlignment="Center"/>
+                                    <Image x:Name="SnapHover" Source="Images\SnapHover.png" Stretch="None" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="SnapshotButtonPI" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="9,0,0,0">
+                                    <Image x:Name="SnapNormal" Source="Images\SnapNormalPi.png" Stretch="None" HorizontalAlignment="Center"/>
+                                    <Image x:Name="SnapHover" Source="Images\SnapHoverPi.png" Stretch="None" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Name="layoutGrid" Margin="10 0 10 0">
+        <Image Name="Image" Source="Images/FFX.jpg" Margin="2,10,0,0" Width="640" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" MouseUp="Image_MouseUp"/>
+        <Canvas x:Name="tela" Width="640" Height="480" Margin="2,10,0,0" VerticalAlignment="Top" />
+        <StatusBar HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource KinectPurpleBrush}">
+            <StatusBarItem Padding="0 0 0 10">
+                <TextBlock Name="statusBarText" Margin="-1 0 0 0">Kinect Not Loaded</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Button  Style="{StaticResource SnapshotButton}" Content="Open Camera" Height="36" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,9,0" x:Name="btnOpen" Click="btnOpen_Click" />
+        <Button  Style="{StaticResource SnapshotButtonPI}" Content="Open PI" Height="36" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,9,0" x:Name="btnOpenPi" Click="btnOpenPi_Click"  />
+        <CheckBox x:Name="ckFlip" Content="Flip" Margin="0,0,108,9" Foreground="{StaticResource KinectPurpleBrush}" Height="17" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="44" Visibility="Collapsed"/>
+    </Grid>
+</Window>

@@ -1,0 +1,213 @@
+﻿<Window x:Class="CameraKinect.ToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tool Window" Height="278" Width="300">
+    <Window.Resources>
+		<SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e"/>
+        <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f"/>
+        <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2"/>
+        <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+        <Style x:Key="GroupBoxStyle1" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderBrush" Value="#D5DFE5"/>
+            <Setter Property="Foreground" Value="Violet" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="6"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Grid.Column="0" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3"/>
+                            <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="4" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3">
+                                <Border.OpacityMask>
+                                    <MultiBinding ConverterParameter="7" Converter="{StaticResource BorderGapMaskConverter}">
+                                        <Binding ElementName="Header" Path="ActualWidth"/>
+                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                                </Border>
+                            </Border>
+                            <Border x:Name="Header" Grid.Column="1" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Style="{DynamicResource ContentPresenterStyle1}"/>
+                            </Border>
+                            <ContentPresenter Grid.ColumnSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="GroupBoxStyle2" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderBrush" Value="#D5DFE5"/>
+            <Setter Property="Foreground" Value="SteelBlue" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="6"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Grid.Column="0" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3"/>
+                            <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="4" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3">
+                                <Border.OpacityMask>
+                                    <MultiBinding ConverterParameter="7" Converter="{StaticResource BorderGapMaskConverter}">
+                                        <Binding ElementName="Header" Path="ActualWidth"/>
+                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                                </Border>
+                            </Border>
+                            <Border x:Name="Header" Grid.Column="1" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Style="{DynamicResource ContentPresenterStyle1}"/>
+                            </Border>
+                            <ContentPresenter Grid.ColumnSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style TargetType="{x:Type Button}" x:Key="KinectUpButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="0,0,0,0" Width="90.651">
+                                    <Image x:Name="SnapNormal" Source="Images\KinectNormalUp.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0"/>
+                                    <Image x:Name="SnapHover" Source="Images\KinectHoverUp.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style TargetType="{x:Type Button}" x:Key="KinectDownButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="0,0,0,0" Width="90.651">
+                                    <Image x:Name="SnapNormal" Source="Images\KinectNormalDown.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0"/>
+                                    <Image x:Name="SnapHover" Source="Images\KinectHoverDown.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style TargetType="{x:Type Button}" x:Key="PiUpButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="0,0,0,0" Width="90.651">
+                                    <Image x:Name="SnapNormal" Source="Images\RaspNormalUp.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0"/>
+                                    <Image x:Name="SnapHover" Source="Images\RaspHoverUp.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style TargetType="{x:Type Button}" x:Key="PiDownButton" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock x:Name="SnapText" Text="{TemplateBinding Content}" TextAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource KinectPurpleBrush}" FontSize="15" />
+                                <Grid Margin="0,0,0,0" Width="90.651">
+                                    <Image x:Name="SnapNormal" Source="Images\RaspNormalDown.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0"/>
+                                    <Image x:Name="SnapHover" Source="Images\RaspHoverDown.png" Stretch="Uniform" HorizontalAlignment="Center" Width="90" Margin="0,0,0,0" Visibility="Collapsed"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="SnapNormal"/>
+                                <Setter Property="Visibility" Value="Visible" TargetName="SnapHover"/>
+                                <Setter Property="Foreground" Value="{StaticResource KinectBlueBrush}" TargetName="SnapText"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Image x:Name="imgDebug" Source="Images/stormtroopocat.jpg" Opacity="0" Margin="0,0,0,10"/>
+        <GroupBox Header="Kinect" HorizontalAlignment="Left" Height="113" Margin="9,-1,0,0" VerticalAlignment="Top" Width="272" Style="{DynamicResource GroupBoxStyle2}">
+            <Grid HorizontalAlignment="Left" Height="118" Margin="-5,-5,-6,-6" VerticalAlignment="Top" Width="271">
+                <Button x:Name="btnDown" Content="" Height="35" Margin="91,60,90,0" VerticalAlignment="Top" Click="btnDown_Click" Style="{DynamicResource KinectDownButton}"/>
+                <Button x:Name="btnUp" Content="" Height="35" Margin="91,10,90,0" VerticalAlignment="Top" Click="btnUp_Click" Style="{DynamicResource KinectUpButton}"/>
+                <Slider x:Name="sliderGrade" HorizontalAlignment="Left" Height="80" Margin="216,15,0,0" VerticalAlignment="Top" Width="20" Orientation="Vertical" Value="3" Maximum="7" Minimum="2" SmallChange="1" ValueChanged="sliderGrade_ValueChanged"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Raspberry" HorizontalAlignment="Left" Height="129" Margin="9,112,0,0" VerticalAlignment="Top" Width="272" Style="{DynamicResource GroupBoxStyle1}">
+            <Grid HorizontalAlignment="Left" Height="118" Margin="-5,-5,-6,-6" VerticalAlignment="Top" Width="271">
+                <Button x:Name="btnDownPi" Content="" Height="35" Margin="91,65,90,0" VerticalAlignment="Top" Click="btnDownPi_Click" Style="{DynamicResource PiDownButton}"/>
+                <Button x:Name="btnUpPi" Content="" Height="35" Margin="91,10,90,0" VerticalAlignment="Top" Click="btnUpPi_Click" Style="{DynamicResource PiUpButton}"/>
+                <Slider x:Name="sliderStepPi" HorizontalAlignment="Left" Height="80" Margin="216,17,0,0" VerticalAlignment="Top" Width="20" Orientation="Vertical" SmallChange="1" Minimum="1" Value="5" ValueChanged="sliderStepPi_ValueChanged" Maximum="9"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
