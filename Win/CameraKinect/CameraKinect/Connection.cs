@@ -29,11 +29,13 @@ namespace CameraKinect
         Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         bool canSend = true;
         Thread t;
+        MainWindow wnd;
 
-        public Connection(WriteInfo wr)
+        public Connection(WriteInfo wr,MainWindow _wnd)
         {
             w = wr;
             w.setTextConn("PI Non Connesso");
+            wnd = _wnd;
             t = new Thread(doWork);
             var doc = XDocument.Load("conf.xml");
             var ips = doc.Descendants("ip");
@@ -82,6 +84,7 @@ namespace CameraKinect
         {
             if (canSend)
             {
+                if (!s.Connected) { return; }
                 canSend = false;
                 s.Send(Protocol.JUMP, SocketFlags.None);
                 t = new Thread(doWork);
@@ -105,6 +108,7 @@ namespace CameraKinect
                 s.Send(Protocol.SU, SocketFlags.None);
                 t = new Thread(doWork);
                 t.Start();
+                wnd.incrementCounter();
             }
             
         }

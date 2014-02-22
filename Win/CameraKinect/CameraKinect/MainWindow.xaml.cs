@@ -61,11 +61,13 @@ namespace CameraKinect
         //Thread button
         Thread t;
 
+        int counter;
+
         public MainWindow()
         {
             InitializeComponent();
             wrInfo = new WriteInfo(statusBarText);
-            pi = new Connection(wrInfo);
+            pi = new Connection(wrInfo,this);
             t = new Thread(swapButton);
             t.Start();
         }
@@ -304,5 +306,20 @@ namespace CameraKinect
                 attachWin();
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.R)
+            {
+                counter = -1;
+                incrementCounter();
+            }
+        }
+
+
+        internal void incrementCounter()
+        {
+            counter++;
+            this.Title = "TT FFX - " + counter;
+        }
     }
 }
